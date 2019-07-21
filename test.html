@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>タイマー式爆弾試作</title>
+        <style>
+        span.hutaketa {
+            position:absolute;
+            top:272px;
+            left:631px;
+            background-color:black;
+            float: left;
+        }
+        span.hitoketa {
+            position:absolute;
+            top:272px;
+            left:657px;
+            background-color:black;
+            clear: both;
+        }
+        body{
+            background-image: url(pic/butu.jpg);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        </style>
+    </head>
+
+    <body>
+            <span class = "hutaketa"><img id = "pic2" src = "pic2/05.png"></span> <!--10の位-->
+            <!-- 画像フォルダ指定　テキストP121の応用 -->
+            <span class = "hitoketa"><img src = "pic/09.png" name = "ichi"></span> <!--1の位-->
+            <!-- 画像ソースに名前（属性）を持たせる -->
+
+            <script>
+            var gazou = new Array("pic/09.png","pic/08.png","pic/07.png","pic/06.png","pic/05.png","pic/04.png",
+                                "pic/03.png","pic/02.png","pic/01.png","pic/00.png");
+            i = -1; // 配列にIDを定義し、カウントの調整
+            
+            var suuzi = new Array("pic/04.png","pic/03.png","pic/02.png","pic/01.png","pic/00.png");
+            var j = -1;
+            // 配列要素に画像ファイル指定
+            // 見せ掛けのカウントダウンの為、画像は逆順
+
+            kansu();
+
+                function kansu() {
+                i++;
+                document.ichi.src = gazou[i];
+                if(i != 10){ //1の位が0になるまで繰り返す。i-10番に00.pngが指定されている
+                    setTimeout("kansu()",1000);
+                }
+                else if(i != 9 && j != 4){ // 10の位が0になるまで繰り返す。j-4番に00.pngが指定されている
+                i = 0;
+                j++;
+                setTimeout("kansu()",1000);
+                document.getElementById("pic2").src = suuzi[j];
+                document.ichi.src = gazou[0];
+                }
+                else{ //上記分岐がi=10:j=4になりfaulsとなる。画像を出力
+                document.write('<img src="pic/bakuhatu.jpg">');
+                }
+            }
+        </script>
+
+    </body>
+</html>
